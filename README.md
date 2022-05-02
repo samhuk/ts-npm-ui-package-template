@@ -12,7 +12,7 @@ To start the component demo app:
 
 Edit a file within src/component to observe hot-reloading.
 
-### JS/TS
+### TS
 The typescript for the component should go into `src/component`
 
 ### Styles
@@ -46,3 +46,10 @@ It's useful to have an image of the component in the README that shows what it l
 1. Ensure that `package.json` has the correct details for the npm package.
 2. `npm run build-component`
 3. `npm publish`
+
+### Notable Technologies
+
+* expressjs
+* react
+* esbuild
+* typescript
