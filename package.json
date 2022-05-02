@@ -1,14 +1,13 @@
 {
-  "name": "@samhuk/table",
-  "version": "1.0.10",
-  "description": "Vanilla JS data table component",
+  "name": "my-component",
+  "version": "1.0.0",
+  "description": "my-component description",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
     "dist/**/*",
     "src/component/**/*"
   ],
-  "repository": "https://github.com/samhuk/table",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "clean": "rimraf ./build && rimraf ./buildScripts/build",
@@ -22,13 +21,10 @@
     "build-component-styles": "env-cmd -e prod node ./buildScripts/build/buildComponentStylesScript.js",
     "build-component": "npm run build-build && npm run build-component-ts && npm run build-component-styles"
   },
-  "author": "samhuk",
+  "author": "",
   "license": "MIT",
   "dependencies": {
     "drag-resistant-click-listener": "^1.0.1"
-  },
-  "publishConfig": {
-    "access": "public"
   },
   "devDependencies": {
     "esbuild-plugin-sass": "^1.0.1",

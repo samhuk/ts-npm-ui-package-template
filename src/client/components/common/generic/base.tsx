@@ -8,6 +8,9 @@ export type Props<TComponent extends { element: HTMLElement }, TComponentOptions
   name?: string
 }
 
+/**
+ * Wraps a vanilla js ui component with a thin react shim layer.
+ */
 export const render = <TComponent extends { element: HTMLElement }, TComponentOptions>(props: Props<TComponent, TComponentOptions>) => {
   const componentContainer = useRef<HTMLDivElement>()
   const component = useRef<TComponent>()

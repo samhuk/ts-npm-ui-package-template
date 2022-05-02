@@ -1,13 +1,13 @@
-export type ComponentOptions = {
+export type MyComponentOptions = {
   initialText: string
 }
 
-export type Component = {
+export type MyComponent = {
   element: HTMLElement
   updateText: (newText: string) => string
 }
 
-export const createComponent = (options: ComponentOptions): Component => {
+export const createMyComponent = (options: MyComponentOptions): MyComponent => {
   const element = document.createElement('div')
   element.classList.add('com-my-component')
 
