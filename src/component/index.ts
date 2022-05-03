@@ -1,13 +1,13 @@
-export type DataTableOptions = {
+export type MyComponentOptions = {
   initialText: string
 }
 
-export type DataTable = {
+export type MyComponent = {
   element: HTMLElement
   updateText: (newText: string) => string
 }
 
-export const createDataTable = (options: DataTableOptions): DataTable => {
+export const createMyComponent = (options: MyComponentOptions): MyComponent => {
   const element = document.createElement('div')
   element.classList.add('com-my-component')
 

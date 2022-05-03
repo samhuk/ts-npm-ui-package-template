@@ -5,7 +5,7 @@ import Nav from '../common/nav'
 export const render = () => (
   <div className="showcase">
     <Nav navItems={[
-      { to: 'data-table', text: 'DataTable' },
+      { to: 'my-component', text: 'MyComponent' },
     ]}
     />
     <Outlet />

@@ -1,14 +1,14 @@
 import React from 'react'
-import { DataTable, DataTableOptions, createDataTable } from '../../../../component'
+import { MyComponent, MyComponentOptions, createMyComponent } from '../../../../component'
 import Com from './base'
 
 /**
- * Thin wrapper around the DataTable component
+ * Thin wrapper around the MyComponent component
  */
-export const render = (props: { options: DataTableOptions, setComponent?: (component: DataTable) => void }) => (
+export const render = (props: { options: MyComponentOptions, setComponent?: (component: MyComponent) => void }) => (
   <Com
     componentOptions={props.options}
-    createComponent={createDataTable}
+    createComponent={createMyComponent}
     setComponent={props.setComponent}
     name="component"
   />

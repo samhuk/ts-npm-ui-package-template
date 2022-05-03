@@ -2,15 +2,17 @@
 
 A starter for creating a generic (no web framework) ui component in typescript, with a hot-reloading demo site.
 
+## Setup
+
+Throughout the starter, the component is called `MyComponent` as a placeholder. Execute `setup.sh` (e.g. `sh setup.sh`) to replace all occurances of `MyComponent` (and `my-component` in some places) with your desired component name.
+
 ## Usage
 
 `npm i`
 
-To start the component demo app:
+To start the component demo app: `npm start`
 
-`npm start`
-
-Edit a file within src/component to observe hot-reloading.
+Edit a file within `src/component` to observe hot-reloading.
 
 ### TS
 The typescript for the component should go into `src/component`

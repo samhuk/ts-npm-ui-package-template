@@ -1,13 +1,13 @@
 import React from 'react'
-import { DataTable, DataTableOptions } from '../../../component'
-import DataTableWithReact from '../common/generic/myComponent'
+import { MyComponent, MyComponentOptions } from '../../../component'
+import MyComponentWithReact from '../common/generic/myComponent'
 import ItemBase from './itemBase'
 
-const COMPONENT_OPTIONS: DataTableOptions = {
+const COMPONENT_OPTIONS: MyComponentOptions = {
   initialText: 'Hello, World!'
 }
 
-const Operations = (props: { component: DataTable }) => (
+const Operations = (props: { component: MyComponent }) => (
   <>
     <button
       type="button"
@@ -20,7 +20,7 @@ const Operations = (props: { component: DataTable }) => (
 )
 
 export const render = () => (
-  <ItemBase component={DataTableWithReact} componentOptions={COMPONENT_OPTIONS} operationsComponent={Operations} />
+  <ItemBase component={MyComponentWithReact} componentOptions={COMPONENT_OPTIONS} operationsComponent={Operations} />
 )
 
 export default render
