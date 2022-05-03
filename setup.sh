@@ -1,10 +1,12 @@
 COMPONENT_NAME_PASCAL_CASE_SEARCH=MyComponent
 COMPONENT_NAME_DASH_CASE_SEARCH=my-component
-COMPONENT_NAME_PASCAL_CASE=MyComponent
-COMPONENT_NAME_DASH_CASE=my-component
-NPM_PACKAGE_NAME=my-component
 
-echo Renaming all occurances of MyComponent with $COMPONENT_NAME_PASCAL_CASE
+# Edit these with your desired name
+COMPONENT_NAME_PASCAL_CASE=DataTable
+COMPONENT_NAME_DASH_CASE=data-table
+NPM_PACKAGE_NAME=data-table
+
+echo Renaming all occurances of $COMPONENT_NAME_PASCAL_CASE_SEARCH with $COMPONENT_NAME_PASCAL_CASE
 sed -i "s/$COMPONENT_NAME_PASCAL_CASE_SEARCH/$COMPONENT_NAME_PASCAL_CASE/g" src/component/index.ts
 
 sed -i "s/$COMPONENT_NAME_PASCAL_CASE_SEARCH/$COMPONENT_NAME_PASCAL_CASE/g" src/client/components/home.tsx
