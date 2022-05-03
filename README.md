@@ -4,7 +4,7 @@ A starter for creating a generic (no web framework) ui component in typescript, 
 
 ## Setup
 
-Throughout the starter, the component is called `MyComponent` as a placeholder. Execute `setup.sh` (e.g. `sh setup.sh`) to replace all occurances of `MyComponent` (and `my-component` in some places) with your desired component name.
+Throughout the starter, the component is called `MyComponent` as a placeholder. Execute `setup.sh` (e.g. `sh setup.sh`) to replace all occurences of `MyComponent` (and `my-component` in some places) with your desired component name.
 
 ## Usage
 
@@ -49,9 +49,10 @@ It's useful to have an image of the component in the README that shows what it l
 2. `npm run build-component`
 3. `npm publish`
 
-### Notable Technologies
+## Notable Technologies
 
-* expressjs
 * react
 * esbuild
 * typescript
+* expressjs
+* scss

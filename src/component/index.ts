@@ -1,9 +1,23 @@
+
+/* This is the entrypoint ts file for the component. The component should return an object
+ * that extends { element: HTMLElement }.
+ */
+
+/**
+ * Options for the creation of MyComponent
+ */
 export type MyComponentOptions = {
   initialText: string
 }
 
 export type MyComponent = {
+  /**
+   * The root element of the component
+   */
   element: HTMLElement
+  /**
+   * Updates the text that is shown within the component
+   */
   updateText: (newText: string) => string
 }
 
