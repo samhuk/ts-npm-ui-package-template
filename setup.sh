@@ -7,7 +7,10 @@ COMPONENT_NAME_DASH_CASE=data-table
 NPM_PACKAGE_NAME=data-table
 
 echo Renaming all occurances of $COMPONENT_NAME_PASCAL_CASE_SEARCH with $COMPONENT_NAME_PASCAL_CASE
+
 sed -i "s/$COMPONENT_NAME_PASCAL_CASE_SEARCH/$COMPONENT_NAME_PASCAL_CASE/g" src/component/index.ts
+
+sed -i "s/$COMPONENT_NAME_PASCAL_CASE_SEARCH/$COMPONENT_NAME_PASCAL_CASE/g" src/component/types.ts
 
 sed -i "s/$COMPONENT_NAME_PASCAL_CASE_SEARCH/$COMPONENT_NAME_PASCAL_CASE/g" src/client/components/home.tsx
 
