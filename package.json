@@ -23,9 +23,7 @@
   },
   "author": "",
   "license": "MIT",
-  "dependencies": {
-    "drag-resistant-click-listener": "^1.0.1"
-  },
+  "dependencies": { },
   "devDependencies": {
     "esbuild-plugin-sass": "^1.0.1",
     "esbuild-sass-plugin": "^2.2.3",
