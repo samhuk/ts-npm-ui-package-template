@@ -1,25 +1,9 @@
 
 /* This is the entrypoint ts file for the component. The component should return an object
- * that extends { element: HTMLElement }.
+ * that extends { rendered: { element: HTMLElement } }.
  */
 
-/**
- * Options for the creation of MyComponent
- */
-export type MyComponentOptions = {
-  initialText: string
-}
-
-export type MyComponent = {
-  /**
-   * The root element of the component
-   */
-  element: HTMLElement
-  /**
-   * Updates the text that is shown within the component
-   */
-  updateText: (newText: string) => string
-}
+import { MyComponentOptions, MyComponent } from "./types"
 
 export const createMyComponent = (options: MyComponentOptions): MyComponent => {
   const element = document.createElement('div')
@@ -28,7 +12,7 @@ export const createMyComponent = (options: MyComponentOptions): MyComponent => {
   element.textContent = options.initialText
 
   return {
-    element,
+    rendered: { element },
     updateText: newText => element.textContent = newText,
   }
 }

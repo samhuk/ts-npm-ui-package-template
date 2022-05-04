@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react'
+import { Rendered } from '../../../../component/types'
 
-export type Props<TComponent extends { element: HTMLElement }, TComponentOptions> = {
+export type Props<TComponent extends { rendered: Rendered }, TComponentOptions> = {
   createComponent: (options: TComponentOptions) => TComponent
   componentOptions: TComponentOptions
   containerElementFullSize?: boolean
@@ -11,7 +12,7 @@ export type Props<TComponent extends { element: HTMLElement }, TComponentOptions
 /**
  * Wraps a vanilla js ui component with a thin react shim layer.
  */
-export const render = <TComponent extends { element: HTMLElement }, TComponentOptions>(props: Props<TComponent, TComponentOptions>) => {
+export const render = <TComponent extends { rendered: Rendered }, TComponentOptions>(props: Props<TComponent, TComponentOptions>) => {
   const componentContainer = useRef<HTMLDivElement>()
   const component = useRef<TComponent>()
 
@@ -21,7 +22,7 @@ export const render = <TComponent extends { element: HTMLElement }, TComponentOp
 
     component.current = props.createComponent(props.componentOptions)
     props.setComponent?.(component.current)
-    componentContainer.current.appendChild(component.current.element)
+    componentContainer.current.appendChild(component.current.rendered.element)
     if (props.containerElementFullSize) {
       componentContainer.current.style.width = '100%'
       componentContainer.current.style.height = '100%'

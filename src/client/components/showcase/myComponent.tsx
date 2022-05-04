@@ -1,5 +1,5 @@
 import React from 'react'
-import { MyComponent, MyComponentOptions } from '../../../component'
+import { MyComponentOptions, MyComponent } from '../../../component/types'
 import MyComponentWithReact from '../common/generic/myComponent'
 import ItemBase from './itemBase'
 

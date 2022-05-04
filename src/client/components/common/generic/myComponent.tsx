@@ -1,5 +1,6 @@
 import React from 'react'
-import { MyComponent, MyComponentOptions, createMyComponent } from '../../../../component'
+import { createMyComponent } from '../../../../component'
+import { MyComponentOptions, MyComponent } from '../../../../component/types'
 import Com from './base'
 
 /**
