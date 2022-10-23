@@ -1,0 +1,10 @@
+/* This is the entrypoint scss file for styling the component.
+ * It is imported for the demo at /src/demo/client/components/app.tsx:9
+ */
+
+.com-package-name {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #eee;
+  padding: 5px;
+}

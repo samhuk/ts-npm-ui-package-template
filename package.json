@@ -1,29 +1,39 @@
 {
-  "name": "my-component",
-  "version": "1.0.0",
-  "description": "my-component description",
+  "name": "{{npm-package-name}}",
+  "version": "0.0.1",
+  "description": "{{package-slogan}}",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
-    "dist/**/*",
-    "src/component/**/*"
+    "dist/**/*"
   ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "clean": "rimraf ./build && rimraf ./buildScripts/build",
-    "build-build": "npm run clean && tsc -p ./buildScripts/tsconfig.json",
-    "build-dev": "npm run build-build && env-cmd -e dev node ./buildScripts/build/build.js",
-    "build-prod": "npm run build-build && env-cmd -e prod node ./buildScripts/build/build.js",
-    "watch-client-dev": "env-cmd -e dev node ./buildScripts/build/watchClient.js",
-    "watch-server-dev": "env-cmd -e dev node ./buildScripts/build/watchServer.js",
-    "start": "npm run build-build && concurrently -n \"ui ,api\" -c \"cyan,blue\" \"npm run watch-client-dev\" \"npm run watch-server-dev\"",
-    "build-component-ts": "tsc --project ./src/component/tsconfig.json",
-    "build-component-styles": "env-cmd -e prod node ./buildScripts/build/buildComponentStylesScript.js",
-    "build-component": "npm run build-build && npm run build-component-ts && npm run build-component-styles"
+    "clean-unit-tests": "rimraf ./build-test",
+    "build-unit-tests": "tsc -p ./tsconfig.unit-tests.json",
+    "run-unit-tests": "jest",
+    "unit-tests": "npm run clean-unit-tests && npm run build-unit-tests && npm run run-unit-tests",
+
+    "lint": "eslint -c .eslintrc.json ./src --ext .ts",
+    "lint-errors-only": "eslint -c .eslintrc.json ./src --ext .ts --quiet",
+
+    "clean-ts-dist": "rimraf ./dist",
+    "build-ts-dist": "npm run clean-ts-dist && tsc -p ./tsconfig.dist.json",
+
+    "clean-ts": "rimraf ./build-ts",
+    "build-ts": "npm run clean-ts && tsc -p ./tsconfig.all.json",
+
+    "clean": "npm run clean-unit-tests && npm run clean-ts && npm run clean-ts-dist",
+
+    "check": "npm rum lint-errors-only && npm run build-ts && npm run tests && echo Done!"
   },
+  "repository": "https://github.com/{{github-user-name}}/{{package-name}}",
   "author": "",
   "license": "MIT",
-  "dependencies": { },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+  },
   "devDependencies": {
     "esbuild-plugin-sass": "^1.0.1",
     "esbuild-sass-plugin": "^2.2.3",
