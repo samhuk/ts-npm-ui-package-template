@@ -185,7 +185,7 @@ const main = async () => {
 
   await npmInstall()
 
-  console.log('\nSetup complete! Run `npm run unit-tests`. Later on, you can try `npm publish`. :)')
+  console.log('\nSetup complete! Run `npm start` to start the demo site. Happy hacking! :)')
   r1.close()
 }
 
