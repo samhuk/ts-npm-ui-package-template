@@ -18,7 +18,7 @@ export const Header = () => (
   <div className="root-header">
     <div className="left">
       <div className="title">
-        MyComponent
+        PackageName Demo Site
       </div>
       <Nav navItems={navItems} />
     </div>

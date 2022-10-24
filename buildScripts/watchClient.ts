@@ -1,7 +1,7 @@
 import chokidar from 'chokidar'
+import { watch } from 'chokidar-debounced'
 import { buildClient } from './buildClient'
 import { CustomBuildResult, printBuildResult } from './buildCommon'
-import { watch } from 'chokidar-debounced'
 
 const buildVerbosity = process.env.BUILD_VERBOSITY != null ? parseInt(process.env.BUILD_VERBOSITY) : 1
 const DIRS = ['./src/demo/client', './src/package-name']
@@ -20,7 +20,7 @@ const startRebuildWatch = (buildResult: CustomBuildResult) => {
         }
       })
       .catch(() => undefined) // Prevent from exiting the process
-  }, DIRS, 500, () => { console.log('Watching for changes...') })
+  }, DIRS, 500, () => console.log('Watching for changes...'))
 }
 
 let initialBuildWatcher: chokidar.FSWatcher = null

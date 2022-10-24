@@ -1,3 +1,4 @@
+import { exit } from 'process'
 import { buildComponentStyles } from './buildComponentStyles'
 
-buildComponentStyles()
+buildComponentStyles().then(() => exit(0))

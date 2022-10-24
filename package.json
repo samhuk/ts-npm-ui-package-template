@@ -8,6 +8,9 @@
     "dist/**/*"
   ],
   "scripts": {
+    "clean-build-build": "rimraf ./buildScripts/build",
+    "build-build": "npm run clean-build-build && tsc -p ./buildScripts/tsconfig.json",
+
     "clean-unit-tests": "rimraf ./build-test",
     "build-unit-tests": "tsc -p ./tsconfig.unit-tests.json",
     "run-unit-tests": "jest",
@@ -16,18 +19,18 @@
     "lint": "eslint -c .eslintrc.json ./src --ext .ts",
     "lint-errors-only": "eslint -c .eslintrc.json ./src --ext .ts --quiet",
 
-    "clean-ts-dist": "rimraf ./dist",
-    "build-ts-dist": "npm run clean-ts-dist && tsc -p ./tsconfig.dist.json",
+    "clean-dist": "rimraf ./dist",
+    "build-ts-dist": "tsc -p ./tsconfig.dist.json",
+    "build-styles-dist": "node ./buildScripts/build/buildComponentStylesScript.js",
+    "build-dist": "npm run build-build && npm run clean-dist && npm run build-ts-dist && npm run build-styles-dist",
 
     "clean-ts": "rimraf ./build-ts",
     "build-ts": "npm run clean-ts && tsc -p ./tsconfig.all.json",
 
     "clean": "npm run clean-unit-tests && npm run clean-ts && npm run clean-ts-dist",
 
-    "check": "npm rum lint-errors-only && npm run build-ts && npm run tests && echo Done!",
+    "check": "npm rum lint-errors-only && npm run build-ts && npm run unit-tests && echo Done!",
 
-    "clean-build-build": "rimraf ./buildScripts/build",
-    "build-build": "npm run clean-build-build && tsc -p ./buildScripts/tsconfig.json",
     "watch-client-dev": "node ./buildScripts/build/watchClient.js",
     "watch-server-dev": "node ./buildScripts/build/watchServer.js",
     "start": "npm run build-build && concurrently -n \"ui ,api\" -c \"cyan,blue\" \"npm run watch-client-dev\" \"npm run watch-server-dev\""

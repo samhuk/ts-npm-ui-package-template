@@ -85,7 +85,7 @@ const _replaceTokensInFiles = (filePaths, tokenMapEntries, i, onComplete) => {
   const fileText = fs.readFileSync(filePath, 'utf8')
   let newFileText = fileText
   tokenMapEntries.forEach(tokenMapEntry => {
-    newFileText = newFileText.replace(tokenMapEntry[0], tokenMapEntry[1])
+    newFileText = newFileText.replace(new RegExp(tokenMapEntry[0], 'g'), tokenMapEntry[1])
   })
   fs.writeFileSync(filePath, newFileText)
 
@@ -103,9 +103,17 @@ const renameDirsAndFiles = (
   camelCasePackageName,
 ) => {
   console.log('\n==> Renaming some directories and files...')
-  fs.renameSync('./src/package-name', `./src/${dashCasePackageName}`)
-  fs.renameSync('./src/demo/client/components/showcase/packageName.tsx', `./src/demo/client/components/showcase/${camelCasePackageName}.tsx`)
-  fs.renameSync('./src/demo/client/components/common/generic/packageName.tsx', `./src/demo/client/components/common/generic/${camelCasePackageName}.tsx`)
+  const paths = [
+    './src/package-name',
+    './src/demo/client/components/showcase/packageName.tsx',
+    './src/demo/client/components/common/generic/packageName.tsx',
+  ]
+  console.log(`--> ${paths[0]}`)
+  fs.renameSync(paths[0], `./src/${dashCasePackageName}`)
+  console.log(`--> ${paths[1]}`)
+  fs.renameSync(paths[1], `./src/demo/client/components/showcase/${camelCasePackageName}.tsx`)
+  console.log(`--> ${paths[2]}`)
+  fs.renameSync(paths[2], `./src/demo/client/components/common/generic/${camelCasePackageName}.tsx`)
 }
 
 const npmInstall = () => new Promise((res, rej) => {
@@ -141,6 +149,8 @@ const main = async () => {
     'package-slogan': packageSlogan,
   }
 
+  console.log('Using token map:', JSON.stringify(nonDoubleDashedTokenMap, null, 2))
+
   const doubleDashedTokenMap = {}
   Object.keys(nonDoubleDashedTokenMap).forEach(token => doubleDashedTokenMap[`{{${token}}}`] = nonDoubleDashedTokenMap[token])
 
@@ -157,9 +167,15 @@ const main = async () => {
     './src/package-name/types.ts',
     './src/package-name/index.ts',
     './src/package-name/styles/index.scss',
+    './src/package-name/index.spec.ts',
     './src/demo/client/components/showcase/index.tsx',
     './src/demo/client/components/showcase/packageName.tsx',
     './src/demo/client/components/common/generic/packageName.tsx',
+    './src/demo/client/components/header/index.tsx',
+    './src/demo/client/components/body.tsx',
+    './src/demo/client/components/app.tsx',
+    './buildScripts/buildComponentStyles.ts',
+    './buildScripts/watchClient.ts',
   ]
 
   await replaceTokensInFiles(filePathsWithDoubleDashTokens, doubleDashedTokenMap)
