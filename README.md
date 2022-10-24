@@ -1,58 +1,83 @@
-# ui-component-starter
+# ts-npm-ui-package-template
 
-A starter for creating a generic (no web framework) ui component in typescript, with a hot-reloading demo site.
+This is a template repository for a Typescript NPM package for one or more UI components. It contains Typescript, ESLint, Jest and VSCode integrations with an ultra-fast hot-reloading demo site to showcase your delightful creations.
 
-## Setup
-
-Throughout the starter, the component is called `MyComponent` as a placeholder. Execute `setup.sh` (e.g. `sh setup.sh`) to replace all occurences of `MyComponent` (and `my-component` in some places) with your desired component name.
+If you instead desire a full web application template, see [tree-starter](https://github.com/samhuk/tree-starter). If you instead desire a non-UI Typescript NPM package template, see [ts-npm-package-template](https://github.com/samhuk/ts-npm-package-template).
 
 ## Usage
 
-`npm i`
+1. Click the "**Use Template**" button on Github to create your own repository from this template
+2. Locally clone your new remote Github repository
+3. From the root directory of your new local clone, run `node setup.js`, entering in some details.
+4. After it completes, you can remove `setup.js`.
+5. Run `npm start` and navigate to http://localhost:8080
+6. For information on how to develop on your new codebase, see [./contributing/development.md](./contributing/development.md)
+7. Have fun!
 
-To start the component demo app: `npm start`
+If you found this delightful, feel free to [buy me a coffee](https://www.buymeacoffee.com/samhuk) ✨
 
-Edit a file within `src/component` to observe hot-reloading.
+---
 
-### TS
-The typescript for the component should go into `src/component`
+<h1 align="center">{{package-name}}</h1>
+<p align="center">
+  <em>{{package-slogan}}</em>
+</p>
 
-### Styles
+> Badges like license type, current build status, and npm package version info can go here. Uncomment the HTML below within this README to show them.
 
-Styles for the component should go into `src/component/styles`. The root style file is `index.scss`.
+<!-- <p align="center">
+  <a href="https://github.com/{{github-user-name}}/{{package-name}}/actions/workflows/ci.yaml/badge.svg" target="_blank">
+    <img src="https://github.com/{{github-user-name}}/{{package-name}}/actions/workflows/ci.yaml/badge.svg" alt="ci status" />
+  </a>
+  <a href="https://img.shields.io/badge/License-MIT-green.svg" target="_blank">
+    <img src="https://img.shields.io/badge/License-MIT-green.svg" alt="license" />
+  </a>
+  <a href="https://badge.fury.io/js/{{npm-package-name}}.svg" target="_blank">
+    <img src="https://badge.fury.io/js/{{npm-package-name}}.svg" alt="npm version" />
+  </a>
+</p> -->
 
-The styles are compiled and bundled with esbuild into `dist/styles.css` during the `npm run build-component` command.
+## Overview
 
-There are two main ways the styles of the component can be imported into another project. One can either:
+> Provide a quick overview of what your package does.
 
-1. `import` the scss entrypoint or css bundle file into your .ts or .js file. This is supported by all the main bundlers out there like webpack and esbuild as long as you have the required loader/plugin for scss or css files configured.
+> An image of what the UI component looks like goes a long way. An image of the example component has been included:
+
+![example-component-image](img/example-component.png)
+
+> If it is a large package, put a "Getting Started" wiki page link here.
+
+## Usage Overview
+
+> Briefly show what using your package looks like. Try to omit as much configuration as possible as your package wiki can detail that.
+
+## Importing Styles
+
+There are two main ways the styles of the component can be imported into your package. One can either:
+
+1. `import` the css bundle file in your Typescript or Javascript (this is supported by all main bundlers like webpack and esbuild):
     ```typescript
-    // Import the scss entrypoint file from the src
-    import 'node_modules/{your npm package name}/src/component/styles/index.scss'
     // Import the css bundle file
-    import 'node_modules/{your npm package name}/dist/styles.css'
+    import 'node_modules/{{npm-package-name}}/dist/styles.css'
     ```
-2. `@import` the scss entrypoint file into your scss file.
+2. `@import` the css bundle file in your SCSS:
     ```scss
-    @import '~{your npm package name}/src/component/styles/index.scss';
+    // Import the css bundle file
+    @import 'node_modules/{{npm-package-name}}/dist/styles.css';
     ```
 
-### Uploading Demo Images
+## Examples
 
-It's useful to have an image of the component in the README that shows what it looks like. Place these images in the img directory. An image of the example component has been provided as an example:
+> Mention where any usage examples are, either within the repository or externally hosted.
 
-![sc1](img/sc1.png)
+## Development
 
-## NPM Publishing
+See [./contributing/development.md](./contributing/development.md)
 
-1. Ensure that `package.json` has the correct details for the npm package.
-2. `npm run build-component`
-3. `npm publish`
+---
 
-## Notable Technologies
+> If desired, briefly mention any donation links here. Here's Buy Me a Coffee as an example:
 
-* react
-* esbuild
-* typescript
-* expressjs
-* scss
+If you found this package delightful, feel free to buy me a coffee ✨
+
+<a href="https://www.buymeacoffee.com/{{buy-me-a-coffee-user-name}}" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" ></a>

@@ -1,7 +1,9 @@
-node_modules
-build
-buildScripts/build
-dist
+/node_modules
+/build
+/dist
+/build-test
+/build-ts
 .DS_Store
-debug.log
-package-lock.json
+/debug.log
+/package-lock.json
+/buildScripts/build

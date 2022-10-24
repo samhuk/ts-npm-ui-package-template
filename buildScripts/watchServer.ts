@@ -1,11 +1,11 @@
 import chokidar from 'chokidar'
 import { ChildProcess, fork } from 'child_process'
+import { watch } from 'chokidar-debounced'
 import { buildServer } from './buildServer'
 import { CustomBuildResult, printBuildResult } from './buildCommon'
-import { watch } from 'chokidar-debounced'
 
 const SERVER_BUILD_OUTPUT_ENTRYPOINT_PATH = './build/server/out.js'
-const DIRS = ['./src/server']
+const DIRS = ['./src/demo/server']
 
 let serverProc: ChildProcess = null
 

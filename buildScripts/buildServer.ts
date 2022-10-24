@@ -4,7 +4,7 @@ import * as path from 'path'
 import { createBuilder } from './buildCommon'
 
 const prod = process.env.NODE_ENV === 'production'
-const ENTRYPOINT_PATH = './src/server/index.ts'
+const ENTRYPOINT_PATH = './src/demo/server/index.ts'
 const OUTPUT_DIR = './build/server'
 const OUTPUT_JS_FILENAME = 'out.js'
 
