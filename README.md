@@ -1,6 +1,6 @@
 # ts-npm-ui-package-template
 
-This is a template repository for a Typescript NPM package for one or more UI component. It contains Typescript, ESLint, Jest and VSCode integrations with an ultra-fast hot-reloading demo site to showcase your delightful creations.
+This is a template repository for a Typescript NPM package for one or more UI components. It contains Typescript, ESLint, Jest and VSCode integrations with an ultra-fast hot-reloading demo site to showcase your delightful creations.
 
 If you instead desire a full web application template, see [tree-starter](https://github.com/samhuk/tree-starter). If you instead desire a non-UI Typescript NPM package template, see [ts-npm-package-template](https://github.com/samhuk/ts-npm-package-template).
 
