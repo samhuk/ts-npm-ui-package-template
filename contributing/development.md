@@ -18,13 +18,13 @@ This section details the basic structure of the repository.
 
 This repository is split into two main parts - the UI component and the demo site.
 
-### Component
+### UI Component
 
 The Typescript for the UI component is at `/src/{{package-name}}`.
 
 The SCSS for the UI component is at `/src/{{package-name}}/styles`.
 
-The public API (that would be published to NPM, for example) is at `/src/index.ts` 
+The public API (that would be published to NPM for example) is at `/src/index.ts` 
 
 ### Demo Site
 
@@ -32,7 +32,9 @@ The demo site is at `/src/demo`. It is split into two main parts - the React cli
 
 The UI component is wrapped at `/src/demo/client/components/common/generic/{{packageName}}.tsx`. This shouldn't need editing.
 
-The React-wrapped UI component is used (demoed) at `src/demo/client/components/showcase/{{packageName}}.tsx`. This should be edited according to your UI component, showcasing it's functionality.
+The React-wrapped UI component is used (demoed) at `/src/demo/client/components/showcase/{{packageName}}.tsx`. This should be edited according to your UI component, showcasing it's functionality.
+
+This site is binded to port `8080` by default. This can be changed within `/.env-cmdrc.json`.
 
 ## Linting
 
@@ -40,9 +42,7 @@ ESLint is used for Typescript linting. To lint the Typescript code, run `npm run
 
 ## Building
 
-To build all of the Typescript code, run `npm run build-ts`.
-
-To build the Typescript code that is published to npm, run `npm run build-ts-dist`.
+To build the UI component Typescript and SCSS, run `npm run build-dist`. The build output is at `/dist`.
 
 ## Testing
 
@@ -54,7 +54,7 @@ The unit tests can be debugged with Visual Studio Code by running the **Run Unit
 
 ## Miscellaneous Scripts
 
-`npm run check` - Useful to run before committing to check the full validity of a change. This runs linting, Typescript build, unit tests and integration tests.
+`npm run check` - Useful to run before committing to check the full validity of a change. This runs linting, Typescript build, unit tests.
 
 ## Pull Requests
 
@@ -70,6 +70,6 @@ These must pass for a pull request to be approved and merged.
 
 Run `npm run check` to check local validity of code.
 
-Run `npm run build-ts-dist` to build the Typescript code to produce the Javascript code that is published to npm.
+Run `npm run build-dist` to build the Typescript and SCSS, producing the code that would be published to NPM.
 
-Run `npm publish` to publish to npm.
+Run `npm publish` to publish to NPM.

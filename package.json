@@ -31,8 +31,8 @@
 
     "check": "npm rum lint-errors-only && npm run build-ts && npm run unit-tests && echo Done!",
 
-    "watch-client-dev": "node ./buildScripts/build/watchClient.js",
-    "watch-server-dev": "node ./buildScripts/build/watchServer.js",
+    "watch-client-dev": "env-cmd -e dev node ./buildScripts/build/watchClient.js",
+    "watch-server-dev": "env-cmd -e dev node ./buildScripts/build/watchServer.js",
     "start": "npm run build-build && concurrently -n \"ui ,api\" -c \"cyan,blue\" \"npm run watch-client-dev\" \"npm run watch-server-dev\""
   },
   "repository": "https://github.com/{{github-user-name}}/{{package-name}}",

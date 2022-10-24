@@ -10,7 +10,7 @@ If you instead desire a full web application template, see [tree-starter](https:
 2. Locally clone your new remote Github repository
 3. From the root directory of your new local clone, run `node setup.js`, entering in some details.
 4. After it completes, you can remove `setup.js`.
-5. Run `npm start`
+5. Run `npm start` and navigate to http://localhost:8080
 6. For information on how to develop on your new codebase, see [./contributing/development.md](./contributing/development.md)
 7. Have fun!
 
