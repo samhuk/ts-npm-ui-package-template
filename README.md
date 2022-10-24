@@ -58,12 +58,12 @@ There are two main ways the styles of the component can be imported into your pa
 1. `import` the css bundle file in your Typescript or Javascript (this is supported by all main bundlers like webpack and esbuild):
     ```typescript
     // Import the css bundle file
-    import 'node_modules/{your npm package name}/dist/styles.css'
+    import 'node_modules/{{npm-package-name}}/dist/styles.css'
     ```
 2. `@import` the css bundle file in your SCSS:
     ```scss
     // Import the css bundle file
-    @import 'node_modules/{your npm package name}/dist/styles.css';
+    @import 'node_modules/{{npm-package-name}}/dist/styles.css';
     ```
 
 ## Examples
