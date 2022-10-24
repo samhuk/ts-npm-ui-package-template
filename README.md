@@ -14,6 +14,8 @@ If you instead desire a full web application template, see [tree-starter](https:
 6. For information on how to develop on your new codebase, see [./contributing/development.md](./contributing/development.md)
 7. Have fun!
 
+This template is approximately based off of a mixture of [ts-npm-package-template](https://github.com/samhuk/ts-npm-package-template) and [tree-starter](https://github.com/samhuk/tree-starter). Therefore, feel free to take a look at those to see how this template can be expanded upon.
+
 If you found this delightful, feel free to [buy me a coffee](https://www.buymeacoffee.com/samhuk) ✨
 
 ---
