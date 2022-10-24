@@ -12,6 +12,10 @@ const readline = require('readline')
 
 const r1 = readline.createInterface({ input: process.stdin, output: process.stdout })
 
+const capitalize = s=> `${s.charAt(0).toUpperCase()}${s.slice(1)}`
+
+const dashCaseToCamelCase = s => s.replace(/-([a-z0-9])/g, (_, m) => `${m.toUpperCase()}`)
+
 const VALIDATORS = {
   isNonEmptyString: { op: s => s != null && s.length > 0, errMsg: 'Cannot be empty' },
   hasNoSpaces: { op: s => s.indexOf(' ') === -1, errMsg: 'Cannot have whitespace' },
@@ -25,7 +29,7 @@ const tryGetInput = (question, onComplete, validators, defaultIfEmpty) => {
       onComplete(defaultIfEmpty)
     }
     else if (validators != null) {
-      const errMsgList = validators.reduce((acc, validator) => (validator.op(name) ? acc : acc.concat(validator.errorMsg)))
+      const errMsgList = validators.reduce((acc, validator) => (validator.op(name) ? acc : acc.concat(validator.errorMsg)), [])
       if (errMsgList.length === 0) {
         onComplete(name)
       }
@@ -41,11 +45,15 @@ const tryGetInput = (question, onComplete, validators, defaultIfEmpty) => {
 }
 
 const getDashCasePackageName = () => new Promise((res, rej) => {
-  tryGetInput('package-name', res, [], 'example-package')
+  tryGetInput('package-name', res, [VALIDATORS.hasNoSpaces], 'example-package')
 })
 
-const getNpmPackageName = () => new Promise((res, rej) => {
-  tryGetInput('npm-package-name', res, [], 'example-package')
+const getCamelCasePackageName = (defaultValue) => new Promise((res, rej) => {
+  tryGetInput('packageName', res, [], defaultValue ?? 'examplePackage')
+})
+
+const getNpmPackageName = (defaultValue) => new Promise((res, rej) => {
+  tryGetInput('npm-package-name', res, [VALIDATORS.hasNoSpaces], defaultValue ?? 'example-package')
 })
 
 const getLicenseName = () => new Promise((res, rej) => {
@@ -53,11 +61,11 @@ const getLicenseName = () => new Promise((res, rej) => {
 })
 
 const getLicenseEmail = () => new Promise((res, rej) => {
-  tryGetInput('license-email', res, [], 'joebloggs@email.com')
+  tryGetInput('license-email', res, [VALIDATORS.hasNoSpaces], 'joebloggs@email.com')
 })
 
 const getGithubUserName = () => new Promise((res, rej) => {
-  tryGetInput('github-user-name', res, [], 'joebloggs')
+  tryGetInput('github-user-name', res, [VALIDATORS.hasNoSpaces], 'joebloggs')
 })
 
 const getPackageSlogan = () => new Promise((res, rej) => {
@@ -90,6 +98,16 @@ const replaceTokensInFiles = (filePaths, tokenMap) => new Promise((res, rej) => 
   _replaceTokensInFiles(filePaths, tokenMapEntries, 0, res)
 })
 
+const renameDirsAndFiles = (
+  dashCasePackageName,
+  camelCasePackageName,
+) => {
+  console.log('\n==> Renaming some directories and files...')
+  fs.renameSync('./src/package-name', `./src/${dashCasePackageName}`)
+  fs.renameSync('./src/demo/client/components/showcase/packageName.tsx', `./src/demo/client/components/showcase/${camelCasePackageName}.tsx`)
+  fs.renameSync('./src/demo/client/components/common/generic/packageName.tsx', `./src/demo/client/components/common/generic/${camelCasePackageName}.tsx`)
+}
+
 const npmInstall = () => new Promise((res, rej) => {
   console.log('==> Installing npm dependencies...')
   exec('npm i', err => {
@@ -102,22 +120,52 @@ const npmInstall = () => new Promise((res, rej) => {
 
 const main = async () => {
   const dashCasePackageName = await getDashCasePackageName()
-  const npmPackageName = await getNpmPackageName()
+  const defaultCamelCasePackageName = dashCaseToCamelCase(dashCasePackageName)
+
+  const camelCasePackageName = await getCamelCasePackageName(defaultCamelCasePackageName)
+  const pascalCasePackageName = capitalize(camelCasePackageName)
+  const npmPackageName = await getNpmPackageName(dashCasePackageName)
   const licenseName = await getLicenseName()
   const licenseEmail = await getLicenseEmail()
   const githubUserName = await getGithubUserName()
   const packageSlogan = await getPackageSlogan()
 
-  const tokenMap = {
-    '{{package-name}}': dashCasePackageName,
-    '{{npm-package-name}}': npmPackageName,
-    '{{license-name}}': licenseName,
-    '{{license-email}}': licenseEmail,
-    '{{github-user-name}}': githubUserName,
-    '{{package-slogan}}': packageSlogan,
+  const nonDoubleDashedTokenMap = {
+    'package-name': dashCasePackageName,
+    'packageName': camelCasePackageName,
+    'PackageName': pascalCasePackageName,
+    'npm-package-name': npmPackageName,
+    'license-name': licenseName,
+    'license-email': licenseEmail,
+    'github-user-name': githubUserName,
+    'package-slogan': packageSlogan,
   }
 
-  await replaceTokensInFiles(['./README.md', './package.json', './LICENSE'], tokenMap)
+  const doubleDashedTokenMap = {}
+  Object.keys(nonDoubleDashedTokenMap).forEach(token => doubleDashedTokenMap[`{{${token}}}`] = nonDoubleDashedTokenMap[token])
+
+  const filePathsWithDoubleDashTokens = [
+    './README.md',
+    './package.json',
+    './LICENSE',
+    './contributing/development.md',
+  ]
+
+  const filePathsWithNonDoubleDashTokens = [
+    './src/index.ts',
+    './src/types.ts',
+    './src/package-name/types.ts',
+    './src/package-name/index.ts',
+    './src/package-name/styles/index.scss',
+    './src/demo/client/components/showcase/index.tsx',
+    './src/demo/client/components/showcase/packageName.tsx',
+    './src/demo/client/components/common/generic/packageName.tsx',
+  ]
+
+  await replaceTokensInFiles(filePathsWithDoubleDashTokens, doubleDashedTokenMap)
+  await replaceTokensInFiles(filePathsWithNonDoubleDashTokens, nonDoubleDashedTokenMap)
+
+  renameDirsAndFiles(dashCasePackageName, camelCasePackageName)
 
   await npmInstall()
 

@@ -6,9 +6,9 @@ import { createBuilder } from './buildCommon'
 import { createIndexHtmlFileText } from './esbuildHtmlFilePlugin'
 
 const prod = process.env.NODE_ENV === 'production'
-const INDEX_HTML_FILE_PATH = './src/client/index.html'
-const FAVICON_FILE_PATH = './src/client/favicon.ico'
-const ENTRYPOINT_PATH = './src/client/main.tsx'
+const INDEX_HTML_FILE_PATH = './src/demo/client/index.html'
+const FAVICON_FILE_PATH = './src/demo/client/favicon.ico'
+const ENTRYPOINT_PATH = './src/demo/client/main.tsx'
 const OUTPUT_DIR = './build/client'
 const OUTPUT_JS_FILENAME = 'out.js'
 
